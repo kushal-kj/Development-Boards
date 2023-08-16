@@ -1,0 +1,10 @@
+22:49:14 **** Incremental Build of configuration Debug for project 4-LED_brightnessControl_using_PWM ****
+make -j8 all 
+arm-none-eabi-size   4-LED_brightnessControl_using_PWM.elf 
+   text	   data	    bss	    dec	    hex	filename
+   9368	     20	   1644	  11032	   2b18	4-LED_brightnessControl_using_PWM.elf
+Finished building: default.size.stdout
+ 
+
+22:49:15 Build Finished. 0 errors, 0 warnings. (took 313ms)
+

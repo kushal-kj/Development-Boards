@@ -1,0 +1,10 @@
+22:33:36 **** Incremental Build of configuration Debug for project 3-Active_buzzer ****
+make -j8 all 
+arm-none-eabi-size   3-Active_buzzer.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5924	     20	   1572	   7516	   1d5c	3-Active_buzzer.elf
+Finished building: default.size.stdout
+ 
+
+22:33:37 Build Finished. 0 errors, 0 warnings. (took 375ms)
+

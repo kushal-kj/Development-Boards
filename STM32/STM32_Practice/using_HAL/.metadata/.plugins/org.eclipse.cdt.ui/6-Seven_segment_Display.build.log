@@ -1,0 +1,10 @@
+20:09:34 **** Incremental Build of configuration Debug for project 6-Seven_segment_Display ****
+make -j8 all 
+arm-none-eabi-size   6-Seven_segment_Display.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5940	     32	   1568	   7540	   1d74	6-Seven_segment_Display.elf
+Finished building: default.size.stdout
+ 
+
+20:09:35 Build Finished. 0 errors, 0 warnings. (took 382ms)
+
