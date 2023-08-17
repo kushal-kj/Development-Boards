@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;4-GPIO_Input_Output_Library/Inc/gpio_drive.h&apos; to &apos;gpio_driver.h&apos;" description="Rename resource &apos;gpio_drive.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Inc/gpio_drive.h" name="gpio_driver.h" stamp="1691138317449" updateReferences="true"/>&#x0A;<refactoring comment="Move &apos;gpio_driver.h&apos; to &apos;Src&apos;" description="Move &apos;gpio_driver.h&apos; to &apos;Src&apos;" destination="Src" element1="Inc/gpio_driver.h" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1691138351011" updateReferences="true"/>
-</session>
