@@ -7,6 +7,9 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32\9-I2C_LCD"/>
+			<item value="C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32\8-ADC_Potentiometer"/>
+			<item value="C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32\8-ADC_Temperature_Humidity Sensor"/>
 			<item value="C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32"/>
 			<item value="C:\Users\ravindra\Desktop\GitHub Repo_embedded\Development Boards\STM32\STM32_Practice\using_HAL"/>
 		</list>
