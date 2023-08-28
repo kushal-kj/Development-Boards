@@ -3892,3 +3892,33 @@ java.lang.Exception: Project '10-I2C_STM32_Arduino' is not open.
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+!SESSION 2023-08-24 13:06:54.157 -----------------------------------------------
+eclipse.buildId=Version 1.13.1
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-08-24 13:07:18.591
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-24 13:07:18.612
+!MESSAGE Log4j2 initialized with config file C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-24 13:07:32.719
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2023-08-24 13:08:11.154
+!MESSAGE wakatime-cli is up to date.
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2023-08-24 13:09:56.062
+!MESSAGE Server returned lastModified <= 0 for https://raw.githubusercontent.com/wakatime/eclipse-wakatime/master/update-site/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2023-08-24 13:10:08.472
+!MESSAGE Using unsafe http transport to retrieve http://download.eclipse.org/usssdk/updates/release/latest, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2023-08-24 13:10:11.331
+!MESSAGE Using unsafe http transport to retrieve http://download.eclipse.org/usssdk/drops/release/1.2.2/content.xml.xz, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-24 13:13:20.132
+!MESSAGE Indexed '11-SPI' (22 sources, 82 headers) in 16.5 sec: 4,716 declarations; 22,526 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0073%)
