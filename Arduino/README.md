@@ -1,6 +1,6 @@
 # DESCRIPTION :
 
-- This Repo consist of ***Programming thhe Arduino***.
+- This Repo consist of ***Programming the Arduino board***.
 - IDE used : Arduino IDE
   
 
