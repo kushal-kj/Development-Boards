@@ -11,4 +11,4 @@
 |  2.  |  ***Humidity_TemperatureSensor***  |  This project is about interfacing Humidity & Temperature sensor.  |
 |  3.  |  ***ESP32_ThingSpeak_check***  |  This project is about uploading a single data to the Thingspeak cloud platform .  |
 |  4.  |   ***ThingSpeak_Writing_MultipleFields***  | This project is about uploading multiple data's to the Thingspeak cloud platform .   |
-|  5.  |  ***Humidity_TemperatureSensor_ThingSpeak***  |  This project is about uploading Humidity and Temperture sensor data's to the Thingspeak cloud platform.  |
+|  5.  |  ***Humidity_TemperatureSensor_ThingSpeak***  |  This project is about uploading Humidity and Temperture sensor data's to the Thingspeak cloud platform. |
