@@ -17,4 +17,4 @@
 |  8.  |  ***ADC_example***  |  This HAL project is about a simple ADC program. |
 |  9.  |  ***I2C_LCD***  |  This HAL project is about interfacing a 16x2 LCD with *'I2C protocol'* . |
 |  10.  |  ***I2C_STM32_Arduino***  |  This HAL project is about communicating between STM32F401RE and Arduino boards using *'I2C communication'* . |
-|  11.  |  ***SPI_ADXL345_LCD***  |  This HAL project is about reading accelerometer  values through *SPI protocol* and displaying the values on LCD (I2C) . |
+|  11.  |  ***SPI_ADXL345_LCD***  |  This HAL project is about reading accelerometer  values through *'SPI protocol'* and displaying the values on LCD (I2C) . |
