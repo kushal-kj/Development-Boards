@@ -24,4 +24,5 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:8-ADC_Potentiometer/activeLaunc
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-lcd_3/activeLaunchMode=run

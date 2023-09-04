@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;11-SPI&apos; to &apos;11-SPI_ADXL345_LCD&apos;" description="Rename resource &apos;11-SPI&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/11-SPI" name="11-SPI_ADXL345_LCD" stamp="1693803127178" updateReferences="true"/>
+</session>

@@ -1,14 +1,14 @@
-23:21:52 **** Incremental Build of configuration Debug for project 10-I2C_STM32_Arduino ****
+16:29:04 **** Incremental Build of configuration Debug for project 11-SPI_ADXL345_LCD ****
 make -j8 all 
-arm-none-eabi-size   10-I2C_STM32_Arduino.elf 
+arm-none-eabi-size   11-SPI_ADXL345_LCD.elf 
    text	   data	    bss	    dec	    hex	filename
-   8508	     20	   1652	  10180	   27c4	10-I2C_STM32_Arduino.elf
+  17536	    116	   2108	  19760	   4d30	11-SPI_ADXL345_LCD.elf
 Finished building: default.size.stdout
  
-23:22:02 **** Incremental Build of configuration Debug for project 10-I2C_STM32_Arduino ****
+16:29:08 **** Incremental Build of configuration Debug for project 11-SPI_ADXL345_LCD ****
 make -j8 all 
-arm-none-eabi-size   10-I2C_STM32_Arduino.elf 
+arm-none-eabi-size   11-SPI_ADXL345_LCD.elf 
    text	   data	    bss	    dec	    hex	filename
-   8508	     20	   1652	  10180	   27c4	10-I2C_STM32_Arduino.elf
+  17536	    116	   2108	  19760	   4d30	11-SPI_ADXL345_LCD.elf
 Finished building: default.size.stdout
  

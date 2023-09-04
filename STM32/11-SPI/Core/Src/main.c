@@ -1,112 +1,125 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
 #include "main.h"
+#include "liquidcrystal_i2c.h"
+//#include "i2c-lcd.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
+I2C_HandleTypeDef hi2c1;
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
+SPI_HandleTypeDef hspi1;
 
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef huart2;
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_USART2_UART_Init(void);
-/* USER CODE BEGIN PFP */
+static void MX_I2C1_Init(void);
+static void MX_SPI1_Init(void);
 
-/* USER CODE END PFP */
+void adxl_write(uint8_t address, uint8_t value);
+void adxl_read(uint8_t address);
+void adxl_init(void);
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
+uint8_t data_rec[6];
+int16_t x,y,z;
+float xg,yg,zg;
 
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
+
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
-  /* USER CODE BEGIN 2 */
+  MX_I2C1_Init();
+  MX_SPI1_Init();
 
-  /* USER CODE END 2 */
+  HD44780_Init(2);
+  HD44780_PrintStr("SPI_TEST");
+  HAL_Delay(2000);
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+//  lcd_init ();
+//  lcd_send_string ("SPI_TEST");
+//  HAL_Delay (2000);  // 2sec wait
+
+  adxl_init();		//Initialize ADXL
+
   while (1)
   {
-    /* USER CODE END WHILE */
+	  adxl_read(0x32);
+	  x=((data_rec[1]<<8)|data_rec[0]);
+	  y=((data_rec[3]<<8)|data_rec[2]);
+	  z=((data_rec[5]<<8)|data_rec[4]);
 
-    /* USER CODE BEGIN 3 */
+	  //convert into 'g'
+	  xg=x*.0078;
+	  yg=y*.0078;
+	  zg=z*.0078;
+
+	  //display the result on LCD
+
+	  HD44780_SetCursor(0,0);
+	  HD44780_PrintStr("X= ");
+	  HD44780_PrintFloat(xg, 5);
+	  HD44780_PrintStr(" ");
+
+	  HD44780_SetCursor(7,0);
+	  HD44780_PrintStr("Y= ");
+	  HD44780_PrintFloat(yg, 5);
+	  HD44780_PrintStr(" ");
+
+	  HD44780_SetCursor(0,1);
+	  HD44780_PrintStr("Z= ");
+	  HD44780_PrintFloat(zg, 5);
+	  HD44780_PrintStr(" ");
+
+//	  lcd_send_cmd (0x80);
+//	  lcd_send_string ("X=");
+//	  lcd_send_float (xg,5);
+//	  lcd_send_string (" ");
+//
+//	  lcd_send_cmd (0x89);
+//	  lcd_send_string ("Y=");
+//	  lcd_send_float (yg,5);
+//
+//	  lcd_send_cmd (0xc4);
+//	  lcd_send_string ("Z=");
+//	  lcd_send_float (zg,5);
+
+	  HAL_Delay (200);   // wait for 200 ms
+
   }
-  /* USER CODE END 3 */
 }
 
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+void adxl_write(uint8_t address, uint8_t value)
+{
+	uint8_t data[2];
+	data[0]=address | 0x40;		//0x40 to set MB bit for reading/writing multiple bytes
+	data[1]=value;
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);		//Pull the CS pin LOW to enable the slave
+	HAL_SPI_Transmit(&hspi1, data, 2, 100);						//Transmit the address and the data
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);			//Pull the CS pin HIGH to disable the slave
+}
+
+
+void adxl_read(uint8_t address)
+{
+	address |= 0x80;	//read operation
+	address|=0x40;	//multiple byte read
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);		//Pull the CS pin LOW to enable the slave
+	HAL_SPI_Transmit(&hspi1, &address, 1, 100);					//Send the address from where you want to read data
+	HAL_SPI_Receive(&hspi1, data_rec, 6, 100);					//read 6 bytes of data
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);			//Pull the CS pin HIGH to disable the slave
+}
+
+void adxl_init(void)
+{
+	adxl_write(0x31,0x01);		//data format range = +-4g
+	adxl_write(0x2d,0x00);		//reset all bits
+	adxl_write(0x2d,0x08);		//power_cntl measure and wakeup 8hz
+
+}
+
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -150,35 +163,74 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief USART2 Initialization Function
+  * @brief I2C1 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_USART2_UART_Init(void)
+static void MX_I2C1_Init(void)
 {
 
-  /* USER CODE BEGIN USART2_Init 0 */
+  /* USER CODE BEGIN I2C1_Init 0 */
 
-  /* USER CODE END USART2_Init 0 */
+  /* USER CODE END I2C1_Init 0 */
 
-  /* USER CODE BEGIN USART2_Init 1 */
+  /* USER CODE BEGIN I2C1_Init 1 */
 
-  /* USER CODE END USART2_Init 1 */
-  huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
-  huart2.Init.StopBits = UART_STOPBITS_1;
-  huart2.Init.Parity = UART_PARITY_NONE;
-  huart2.Init.Mode = UART_MODE_TX_RX;
-  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN USART2_Init 2 */
+  /* USER CODE BEGIN I2C1_Init 2 */
 
-  /* USER CODE END USART2_Init 2 */
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI1_Init(void)
+{
+
+  /* USER CODE BEGIN SPI1_Init 0 */
+
+  /* USER CODE END SPI1_Init 0 */
+
+  /* USER CODE BEGIN SPI1_Init 1 */
+
+  /* USER CODE END SPI1_Init 1 */
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI1_Init 2 */
+
+  /* USER CODE END SPI1_Init 2 */
 
 }
 
@@ -194,26 +246,19 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
+  /*Configure GPIO pin : PB6 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

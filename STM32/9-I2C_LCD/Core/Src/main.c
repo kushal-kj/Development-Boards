@@ -19,6 +19,7 @@ int main(void)
 
   MX_GPIO_Init();
   MX_I2C1_Init();
+
   HD44780_Init(2);
   HD44780_Clear();
   HD44780_SetCursor(0,0);
