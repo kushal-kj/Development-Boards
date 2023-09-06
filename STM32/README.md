@@ -1,6 +1,6 @@
 # DESCRIPTION :
 -  This repo consist of ***Programming the STM32 board using 'HAL' libraries.***
--  I have used STM32F401RE Nucleo board.
+-  I have used ***STM32F401RE Nucleo board*** and also ***STM32F103C8T6 Blue-Pill board***.
 -  IDE used : STM32CUBEIDE
 
 # CONTENTS :
@@ -18,3 +18,4 @@
 |  9.  |  ***I2C_LCD***  |  This HAL project is about interfacing a 16x2 LCD with *'I2C protocol'* . |
 |  10.  |  ***I2C_STM32_Arduino***  |  This HAL project is about communicating between STM32F401RE and Arduino boards using *'I2C communication'* . |
 |  11.  |  ***SPI_ADXL345_LCD***  |  This HAL project is about reading accelerometer  values through *'SPI protocol'* and displaying the values on LCD (I2C) . |
+|  12.  |  ***CAN_LoopBack***  |  This HAL project is about transmitting and receiving the data in Loop Back mode using ***'CAN Protocol'***. |
