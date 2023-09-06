@@ -8,6 +8,8 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:1-LED_blink\ Debug/activeLaunch
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:10-I2C_STM32_Arduino\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:11-SPI_ADXL345_LCD\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:11-SPI_ADXL345_LCD\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:12-CAN_LoopBack\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:12-CAN_LoopBack\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2-LED_Toggle_switch\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:3-Active_buzzer\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:3-Active_buzzer\ Debug/activeLaunchTarget=null\:---
@@ -28,3 +30,4 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD\ Debug/activeLaunchTa
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-I2C_LCD/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:9-lcd_3/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:blank_project\ Debug/activeLaunchMode=run
