@@ -1,14 +1,34 @@
-00:11:15 **** Incremental Build of configuration Debug for project 12-CAN_LoopBack ****
+00:19:44 **** Incremental Build of configuration Debug for project 14-CAN_NormalMode ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "12-CAN_LoopBack.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32\12-CAN_LoopBack\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="12-CAN_LoopBack.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 12-CAN_LoopBack.elf
- 
-arm-none-eabi-size   12-CAN_LoopBack.elf 
-arm-none-eabi-objdump -h -S  12-CAN_LoopBack.elf  > "12-CAN_LoopBack.list"
-   text	   data	    bss	    dec	    hex	filename
-  11200	    100	   2012	  13312	   3400	12-CAN_LoopBack.elf
-Finished building: default.size.stdout
- 
-Finished building: 12-CAN_LoopBack.list
- 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'CAN_TX':
+../Core/Src/main.c:122:51: warning: passing argument 3 of 'HAL_CAN_AddTxMessage' makes pointer from integer without a cast [-Wint-conversion]
+  122 |         if(HAL_CAN_AddTxMessage(&hcan, &TxHeader, message, &TxMailbox)!=HAL_OK)                 //To check if it executes correctly or not
+      |                                                   ^~~~~~~
+      |                                                   |
+      |                                                   uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:299,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:10,
+                 from ../Core/Src/main.c:2:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h:678:103: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  678 | HAL_StatusTypeDef HAL_CAN_AddTxMessage(CAN_HandleTypeDef *hcan, CAN_TxHeaderTypeDef *pHeader, uint8_t aData[], uint32_t *pTxMailbox);
+      |                                                                                               ~~~~~~~~^~~~~~~
+../Core/Src/main.c: In function 'HAL_CAN_RxFifo0MsgPendingCallback':
+../Core/Src/main.c:195:33: warning: passing argument 1 of 'HAL_CAN_GetRxMessage' from incompatible pointer type [-Wincompatible-pointer-types]
+  195 |         if(HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &RxHeader, receive_msg) !=HAL_OK)
+      |                                 ^~~~~
+      |                                 |
+      |                                 CAN_HandleTypeDef ** {aka struct __CAN_HandleTypeDef **}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:299,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:10,
+                 from ../Core/Src/main.c:2:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h:683:59: note: expected 'CAN_HandleTypeDef *' {aka 'struct __CAN_HandleTypeDef *'} but argument is of type 'CAN_HandleTypeDef **' {aka 'struct __CAN_HandleTypeDef **'}
+  683 | HAL_StatusTypeDef HAL_CAN_GetRxMessage(CAN_HandleTypeDef *hcan, uint32_t RxFifo, CAN_RxHeaderTypeDef *pHeader, uint8_t aData[]);
+      |                                        ~~~~~~~~~~~~~~~~~~~^~~~
+arm-none-eabi-gcc -o "14-CAN_NormalMode.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ravindra\Desktop\GitHub_Repo_Embedded_Programming\Development Boards\STM32\14-CAN_NormalMode\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="14-CAN_NormalMode.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.12.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/stm32f4xx_hal_timebase_tim.o:C:/Users/ravindra/Desktop/GitHub_Repo_Embedded_Programming/Development Boards/STM32/14-CAN_NormalMode/Debug/../Core/Src/stm32f4xx_hal_timebase_tim.c:28: multiple definition of `htim6'; ./Core/Src/main.o:C:/Users/ravindra/Desktop/GitHub_Repo_Embedded_Programming/Development Boards/STM32/14-CAN_NormalMode/Debug/../Core/Src/main.c:9: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: 14-CAN_NormalMode.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
