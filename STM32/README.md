@@ -19,5 +19,5 @@
 |  10.  |  ***I2C_STM32_Arduino***  |  This HAL project is about communicating between STM32F401RE and Arduino boards using *'I2C communication'* . |
 |  11.  |  ***SPI_ADXL345_LCD***  |  This HAL project is about reading accelerometer  values through *'SPI protocol'* and displaying the values on LCD (I2C) . |
 |  12.  |  ***CAN_LoopBack***  |  This HAL project is about transmitting and receiving the data in Loop Back mode using ***'CAN Protocol'***. |
-|  13.  |  ***CAN_LoopBack_IT***  |  This HAL project is about transmitting and receiving the data in Loop Back mode with Interrupts using ***'CAN Protocol'***. |
+|  13.  |  ***CAN_LoopBack_Interrrupt***  |  This HAL project is about transmitting and receiving the data in Loop Back mode with Interrupts using ***'CAN Protocol'***. |
 |  14.  |  ***CAN_NormalMode***  |  This HAL project is about transmitting and receiving the data in Normal mode between 2 STM32's using ***'CAN Protocol'***. |
